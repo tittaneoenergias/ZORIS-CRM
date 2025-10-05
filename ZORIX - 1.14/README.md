@@ -35,9 +35,49 @@
 - **CRUD completo**: Criar, visualizar, editar, excluir clientes
 - **Busca integrada**: Localização rápida por nome, email ou telefone
 
-## ⚡ **ÚLTIMAS ATUALIZAÇÕES APLICADAS** *(04/10/2025)*
+### 📁 **Sistema de Arquivos (COMPLETO!)**
+- **Upload Multi-Cliente**: Cada cliente pode fazer upload de arquivos independentes
+- **Sincronização Inteligente**: Botão para transferir arquivos de cliente para sistema principal
+- **Download/Preview**: Visualização e download completo de arquivos sincronizados
+- **Armazenamento Base64**: Conteúdo completo dos arquivos preservado para acesso offline
+- **Interface Unificada**: Gestão centralizada de todos os arquivos do sistema
+- **Isolamento de Dados**: Separação segura de arquivos por cliente
+- **Sistema de Teste**: Ferramentas para validação completa do fluxo de arquivos
 
-### 🔧 **MELHORIAS NO SISTEMA DE PROJETOS**
+## ⚡ **ÚLTIMAS ATUALIZAÇÕES APLICADAS** *(05/10/2025)*
+
+### 🔄 **SISTEMA DE SINCRONIZAÇÃO DE ARQUIVOS** *(IMPLEMENTADO)*
+
+#### ✅ **Upload de Arquivos por Cliente**
+- **📁 Upload Individual**: Cada cliente pode fazer upload de arquivos através da sua aba específica
+- **🔒 Isolamento de Dados**: Arquivos são armazenados com prefixo específico por cliente (`zorix:arquivos_${clienteId}`)
+- **📱 Interface Compacta**: Modal otimizado para upload com lista de arquivos existentes
+- **💾 Armazenamento Base64**: Conteúdo completo dos arquivos armazenado localmente para download posterior
+
+#### ✅ **Sistema de Sincronização**
+- **🔄 Botão Sincronizar**: Botão verde no modal de upload para transferir arquivos para o sistema principal
+- **🗂️ Transferência Automática**: Função `sincronizarArquivos()` transfere arquivos de cliente para sistema geral
+- **🔍 Verificação de Duplicatas**: Sistema verifica se arquivo já existe antes de sincronizar
+- **📊 Integração Completa**: Arquivos sincronizados aparecem na seção principal de arquivos
+- **⬇️ Download Funcional**: Sistema completo de download com conversão base64 para blob
+
+#### ✅ **Funcionalidades Avançadas**
+- **📄 Visualização de Arquivos**: Preview integrado com o sistema de arquivos principal
+- **🗑️ Remoção Individual**: Possibilidade de remover arquivos específicos do cliente
+- **📈 Contadores Atualizados**: Métricas em tempo real de arquivos por cliente e sistema
+- **🔔 Notificações**: Feedback completo sobre uploads, sincronizações e erros
+- **🔧 Sistema de Teste**: Página `test-file-sync.html` para validação completa do fluxo
+
+#### 💻 **Implementação Técnica**
+- **Função `handleFileUpload()`**: Processa arquivos e salva com conteúdo base64
+- **Função `sincronizarArquivos()`**: Transfere arquivos para API principal
+- **Helper `readFileAsBase64()`**: Converte arquivos para base64 usando FileReader
+- **Integração com `arquivos.js`**: Sistema principal de download e visualização
+- **Multi-tenant Storage**: Separação de dados por usuário/cliente
+
+---
+
+## 🔧 **MELHORIAS NO SISTEMA DE PROJETOS**
 
 #### ✅ **Sistema de Entrada + Parcelamento Implementado**
 - **💰 Campo Valor da Entrada**: Novo campo para definir valor de entrada
@@ -591,6 +631,95 @@ Implementadas novas funcionalidades no formulário "Novo Projeto" da aba Cliente
 6. ✅ **Estabilidade** - Sistema robusto e confiável para produção
 
 **O ZORIX CRM oferece uma solução completa de gestão empresarial com foco no mercado brasileiro, mantendo toda a funcionalidade existente e adicionando poderosas ferramentas financeiras.**
+
+---
+
+## 🔌 **ENDPOINTS E API DO SISTEMA**
+
+### **📁 Sistema de Arquivos**
+O ZORIX CRM possui um sistema completo de gerenciamento de arquivos com APIs RESTful:
+
+#### **URLs Funcionais de Acesso:**
+- **Sistema Principal**: `index.html` - Interface completa do ZORIX CRM
+- **Teste de Sincronização**: `test-file-sync.html` - Ferramenta de validação do sistema de arquivos
+- **Demo de Proposta**: `demo-proposta-premium.html` - Exemplo de proposta mantida
+
+#### **Storage de Arquivos:**
+```javascript
+// Arquivos por Cliente (LocalStorage)
+localStorage.getItem(`zorix:arquivos_${clienteId}`)  // Array de arquivos do cliente
+
+// Estrutura do Arquivo:
+{
+    id: "timestamp_random",           // ID único
+    nome: "documento.pdf",            // Nome original
+    tamanho: 1024000,                // Tamanho em bytes
+    tipo: "application/pdf",          // MIME type
+    conteudo_base64: "JVBERi0x...",  // Conteúdo codificado
+    dataUpload: "2025-10-05T..."     // ISO timestamp
+}
+```
+
+#### **Funções JavaScript da API:**
+```javascript
+// Upload de Arquivo (clientes-v5.js)
+await clientesV5.handleFileUpload(event, clienteId)
+
+// Sincronização (clientes-v5.js)  
+await clientesV5.sincronizarArquivos(clienteId)
+
+// Download do Sistema (arquivos.js)
+arquivosManager.downloadFile(arquivoId)
+
+// Visualização (arquivos.js)
+arquivosManager.viewFile(arquivoId)
+```
+
+### **🗄️ Sistema de Storage Multi-Tenant**
+```javascript
+// Configuração de Usuário
+window.storage.setUserContext(userId)
+window.zorixStorage.setUserContext(userId)
+
+// Chaves de Storage por Módulo
+zorix:clientes_${userId}         // Clientes do usuário
+zorix:projetos_${userId}         // Projetos do usuário  
+zorix:arquivos_${clienteId}      // Arquivos por cliente
+zorix:contas_pagar_${userId}     // Contas a pagar
+zorix:contas_receber_${userId}   // Contas a receber
+```
+
+### **📊 Estrutura de Dados**
+#### **Modelo de Arquivo Sincronizado:**
+```javascript
+{
+    id: "unique_id",
+    cliente_id: "client_id", 
+    projeto_id: null,
+    nome_arquivo: "document.pdf",
+    tipo_arquivo: "PDF",              // PDF, DOC, IMG, XLS
+    tipo_mime: "application/pdf",
+    descricao: "Arquivo do cliente",
+    tamanho: 1024000,
+    conteudo_base64: "base64_content",
+    data_upload: "2025-10-05T10:30:00Z",
+    usuario_upload: "Cliente via Sistema"
+}
+```
+
+### **🔄 Fluxo de Sincronização**
+1. **Upload no Cliente** → Arquivo salvo em `zorix:arquivos_${clienteId}`
+2. **Clique em Sincronizar** → Função `sincronizarArquivos()` executada
+3. **Verificação** → Sistema verifica se arquivo já existe
+4. **Transferência** → Arquivo movido para sistema principal via `window.api.createArquivo()`
+5. **Atualização** → Interface da página de arquivos atualizada automaticamente
+
+### **🛠️ Arquivos de Sistema**
+- **`js/clientes-v5.js`** - Gerenciamento de upload e sincronização por cliente
+- **`js/arquivos.js`** - Sistema principal de arquivos com download/preview  
+- **`js/storage.js`** - Gerenciamento de storage multi-tenant
+- **`js/zorix-storage.js`** - Camada de abstração para dados ZORIX
+- **`js/api.js`** - Interface para operações de CRUD de dados
 
 ---
 
