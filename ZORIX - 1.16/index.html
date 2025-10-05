@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ZORIX CRM - Sistema completo de gestão empresarial com controle financeiro, clientes e projetos">
+    <meta name="keywords" content="CRM, gestão empresarial, contas a pagar, contas a receber, clientes, projetos">
+    <meta name="author" content="ZORIX CRM">
+    <title>ZORIX CRM - Sistema de Gestão Empresarial</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0iIzI1NjNlYiIvPgo8dGV4dCB4PSIxNiIgeT0iMjEiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5aPC90ZXh0Pgo8L3N2Zz4K">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ZORIX CRM Custom Theme -->
+    <link rel="stylesheet" href="css/zorix-theme.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- FullCalendar -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    
+    <!-- jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        .sidebar-active {
+            transform: translateX(0);
+        }
+        
+        .sidebar-inactive {
+            transform: translateX(-100%);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-button-config {
+            color: #6B7280;
+            border-color: transparent;
+            transition: all 0.2s;
+        }
+        
+        .tab-button-config:hover {
+            color: #374151;
+            border-color: #D1D5DB;
+        }
+        
+        .tab-button-config.active {
+            color: #3B82F6;
+            border-color: #3B82F6;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Custom scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Loading Screen -->
+    <div id="loading" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
+        <div class="text-center">
+            <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+            <p class="text-gray-600">Carregando ZORIX CRM...</p>
+        </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="hidden min-h-screen login-background flex items-center justify-center px-4">
+        <div class="login-card rounded-xl shadow-2xl p-8 w-full max-w-md">
+            <div class="text-center mb-8">
+                <i class="fas fa-solar-panel text-4xl logo-zorix mb-4"></i>
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">ZORIX CRM</h1>
+                <p class="text-gray-600">Sistema para Integradores Solar</p>
+            </div>
+            
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <input type="email" id="loginEmail" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="seu@email.com" required>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+                    <input type="password" id="loginSenha" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="••••••••" required>
+                </div>
+                
+                <button type="submit" id="loginBtn" class="w-full btn-primary py-3 px-4 rounded-lg transition duration-200 font-medium">
+                    <span id="loginBtnText">Entrar</span>
+                    <i id="loginBtnSpinner" class="fas fa-spinner fa-spin hidden ml-2"></i>
+                </button>
+                
+                <div class="text-center">
+                    <a href="#" class="text-blue-600 hover:underline text-sm">Esqueceu sua senha?</a>
+                </div>
+            </form>
+            
+            <div class="mt-6 pt-6 border-t border-gray-200 text-center">
+                <p class="text-gray-600 text-sm mb-4">Não tem uma conta?</p>
+                <button id="showRegister" class="text-blue-600 hover:underline font-medium">
+                    Cadastre-se aqui
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Screen -->
+    <div id="registerScreen" class="hidden min-h-screen login-background flex items-center justify-center px-4">
+        <div class="login-card rounded-xl shadow-2xl p-8 w-full max-w-md">
+            <div class="text-center mb-8">
+                <i class="fas fa-user-plus text-4xl text-green-500 mb-4"></i>
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Cadastro</h1>
+                <p class="text-gray-600">Crie sua conta no ZORIX CRM</p>
+            </div>
+            
+            <form id="registerForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Nome Completo</label>
+                    <input type="text" id="registerNome" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Seu nome completo" required>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <input type="email" id="registerEmail" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="seu@email.com" required>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Tipo de Usuário</label>
+                    <select id="registerTipo" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" required>
+                        <option value="">Selecione...</option>
+                        <option value="administrador">Administrador</option>
+                        <option value="engenheiro">Engenheiro/Projetista</option>
+                        <option value="comercial">Comercial</option>
+                        <option value="tecnico">Técnico de Campo</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+                    <input type="password" id="registerSenha" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="••••••••" required>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Confirmar Senha</label>
+                    <input type="password" id="registerSenhaConfirm" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="••••••••" required>
+                </div>
+                
+                <button type="submit" id="registerBtn" class="w-full btn-primary py-3 px-4 rounded-lg transition duration-200 font-medium">
+                    <span id="registerBtnText">Cadastrar</span>
+                    <i id="registerBtnSpinner" class="fas fa-spinner fa-spin hidden ml-2"></i>
+                </button>
+            </form>
+            
+            <div class="mt-6 pt-6 border-t border-gray-200 text-center">
+                <button id="showLogin" class="text-green-600 hover:underline font-medium">
+                    ← Voltar ao Login
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Configurações -->
+    <div id="configuracoesModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-4xl mx-4 max-h-90vh overflow-y-auto">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold text-gray-900">Configurações do Sistema</h2>
+                    <button id="fecharConfiguracoesModal" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Abas de Configurações -->
+                <div class="mb-6">
+                    <nav class="flex space-x-8">
+                        <button class="config-tab-btn py-2 px-1 border-b-2 border-blue-500 font-medium text-sm text-blue-600" data-tab="usuarios">
+                            Usuários
+                        </button>
+                        <button class="config-tab-btn py-2 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700" data-tab="vendedores">
+                            Vendedores
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Conteúdo das Abas -->
+                <div id="configContent">
+                    <!-- Aba Usuários -->
+                    <div id="tabUsuarios" class="config-tab-content">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Cadastro de Usuário -->
+                            <div class="bg-gray-50 p-6 rounded-lg">
+                                <h3 class="text-lg font-semibold mb-4 text-gray-900">Novo Usuário</h3>
+                                <form id="formNovoUsuario" class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Nome</label>
+                                        <input type="text" id="nomeUsuario" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                        <input type="email" id="emailUsuario" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+                                        <input type="password" id="senhaUsuario" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Tipo de Usuário</label>
+                                        <select id="tipoUsuario" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                            <option value="">Selecione o tipo</option>
+                                            <option value="administrador">Administrador (Acesso Total)</option>
+                                            <option value="colaborador">Colaborador (Acesso Limitado)</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200">
+                                        Cadastrar Usuário
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- Lista de Usuários -->
+                            <div class="bg-white border rounded-lg">
+                                <div class="p-4 border-b">
+                                    <h3 class="text-lg font-semibold text-gray-900">Usuários Cadastrados</h3>
+                                </div>
+                                <div id="listaUsuarios" class="p-4 max-h-96 overflow-y-auto">
+                                    <!-- Lista será populada via JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aba Vendedores -->
+                    <div id="tabVendedores" class="config-tab-content hidden">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Cadastro de Vendedor -->
+                            <div class="bg-gray-50 p-6 rounded-lg">
+                                <h3 class="text-lg font-semibold mb-4 text-gray-900">Novo Vendedor</h3>
+                                <form id="formNovoVendedor" class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Nome</label>
+                                        <input type="text" id="nomeVendedor" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                        <input type="email" id="emailVendedor" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Telefone</label>
+                                        <input type="text" id="telefoneVendedor" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Comissão por Projeto (%)</label>
+                                        <input type="number" id="comissaoVendedor" min="0" max="100" step="0.5" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    </div>
+                                    <button type="submit" class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200">
+                                        Cadastrar Vendedor
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- Lista de Vendedores -->
+                            <div class="bg-white border rounded-lg">
+                                <div class="p-4 border-b">
+                                    <h3 class="text-lg font-semibold text-gray-900">Vendedores Cadastrados</h3>
+                                </div>
+                                <div id="listaVendedores" class="p-4 max-h-96 overflow-y-auto">
+                                    <!-- Lista será populada via JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="mainApp" class="hidden">
+        <!-- Sidebar -->
+        <div id="sidebar" class="fixed inset-y-0 left-0 z-30 w-64 sidebar-zorix transform transition-transform duration-300 ease-in-out sidebar-inactive lg:sidebar-active custom-scrollbar overflow-y-auto">
+            <div class="flex items-center justify-center h-16 bg-gradient-to-r from-blue-600 to-blue-700">
+                <i class="fas fa-chart-line text-2xl text-white mr-2"></i>
+                <span class="font-bold text-xl text-white">ZORIX CRM</span>
+            </div>
+            
+            <nav class="mt-8">
+                <div class="px-4 space-y-2">
+                    <a href="#" data-page="dashboard" class="nav-item flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors duration-200">
+                        <i class="fas fa-tachometer-alt mr-3"></i>
+                        Dashboard
+                    </a>
+                    
+                    <a href="#" data-page="contas" class="nav-item flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors duration-200">
+                        <i class="fas fa-calculator mr-3"></i>
+                        Contas
+                    </a>
+                    
+                    <a href="#" data-page="clientes" class="nav-item flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors duration-200">
+                        <i class="fas fa-users mr-3"></i>
+                        Clientes
+                    </a>
+                    
+                    <a href="#" data-page="projetos" class="nav-item flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors duration-200">
+                        <i class="fas fa-project-diagram mr-3"></i>
+                        Projetos
+                    </a>
+                    
+                    <a href="#" data-page="agenda" class="nav-item flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors duration-200">
+                        <i class="fas fa-calendar-alt mr-3"></i>
+                        Agenda
+                    </a>
+                    
+                    <a href="#" data-page="interacoes" class="nav-item flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors duration-200">
+                        <i class="fas fa-comments mr-3"></i>
+                        Interações
+                    </a>
+                    
+                    <a href="#" data-page="relatorios" class="nav-item flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors duration-200">
+                        <i class="fas fa-chart-bar mr-3"></i>
+                        Relatórios
+                    </a>
+                    
+                    <a href="#" data-page="arquivos" class="nav-item flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors duration-200">
+                        <i class="fas fa-folder mr-3"></i>
+                        Arquivos
+                    </a>
+                    
+                    <!-- Painel Admin - Apenas para Administradores -->
+                    <a href="#" id="painelAdminMenuItem" data-page="painel-admin" class="nav-item flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors duration-200 hidden">
+                        <i class="fas fa-shield-alt mr-3"></i>
+                        Painel Admin
+                    </a>
+
+                </div>
+                
+                <div class="mt-8 px-4">
+                    <div class="border-t border-gray-700 pt-4">
+                        <div class="flex items-center px-4 py-2">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                                <span id="userInitials" class="text-sm font-medium">U</span>
+                            </div>
+                            <div class="ml-3 flex-1">
+                                <p id="userName" class="text-sm font-medium">Usuário</p>
+                                <p id="userType" class="text-xs text-gray-400">Tipo</p>
+                            </div>
+                            <button id="configuracoesBtn" class="text-gray-400 hover:text-white transition-colors duration-200 p-1 rounded" title="Configurações">
+                                <i class="fas fa-cog text-lg"></i>
+                            </button>
+                        </div>
+                        
+                        <button id="logoutBtn" class="w-full mt-4 flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors duration-200">
+                            <i class="fas fa-sign-out-alt mr-3"></i>
+                            Sair
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="lg:ml-64">
+            <!-- Top Navigation -->
+            <header class="header-zorix shadow-sm">
+                <div class="flex items-center justify-between px-6 py-4">
+                    <button id="sidebarToggle" class="lg:hidden text-gray-600 hover:text-gray-900">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <button class="text-gray-600 hover:text-gray-900">
+                                <i class="fas fa-bell text-xl"></i>
+                                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                            </button>
+                        </div>
+                        
+                        <div class="text-right">
+                            <p class="text-sm font-medium text-gray-900" id="headerUserName">Usuário</p>
+                            <p class="text-xs text-gray-500" id="headerUserType">Tipo</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main class="p-6" id="pageContent">
+                <!-- Content will be loaded here dynamically -->
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/zorix-storage.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/clientes.js"></script>
+    <script src="js/clientes-v3.js"></script>
+    <script src="js/clientes-v4.js"></script>
+    <script src="js/clientes-v5.js"></script>
+    <script src="js/projetos.js"></script>
+    <script src="js/agenda.js"></script>
+    <script src="js/interacoes.js"></script>
+    <script src="js/relatorios.js"></script>
+    <script src="js/arquivos.js"></script>
+    <script src="js/contas.js"></script>
+    <script src="js/caixa.js"></script>
+
+    <script src="js/proposta-generator.js"></script>
+    <script src="js/proposta-premium-generator.js"></script>
+    <script src="js/proposta-v5-generator.js"></script>
+    <script src="js/pdf-generator-apple.js"></script>
+    <script src="js/configuracoes-sistema.js"></script>
+    <script src="js/painel-admin.js"></script>
+    <script src="js/main.js"></script>
+    
+    <!-- Configurações globais brasileiras -->
+    <script>
+        // Configurar fuso horário e formatação brasileira
+        window.ZORIX_CONFIG = {
+            timezone: 'America/Sao_Paulo',
+            currency: 'BRL',
+            locale: 'pt-BR',
+            dateFormat: 'DD/MM/YYYY',
+            currencySymbol: 'R$'
+        };
+        
+        // Função global para formatação de moeda brasileira
+        window.formatCurrencyBR = function(value) {
+            if (typeof value === 'string') {
+                value = value.replace(/[^\d,.-]/g, '').replace(',', '.');
+                value = parseFloat(value) || 0;
+            }
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format(value);
+        };
+        
+        // Função global para formatação de data brasileira
+        window.formatDateBR = function(dateStr) {
+            if (!dateStr) return '';
+            const date = new Date(dateStr + 'T00:00:00');
+            return date.toLocaleDateString('pt-BR', {
+                timeZone: 'America/Sao_Paulo'
+            });
+        };
+        
+        // Função global para obter data atual no fuso brasileiro
+        window.getCurrentDateBR = function() {
+            return new Date().toLocaleDateString('pt-BR', {
+                timeZone: 'America/Sao_Paulo',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            }).split('/').reverse().join('-');
+        };
+        
+        // Função global para formatação de entrada de moeda
+        window.formatCurrencyInputBR = function(input) {
+            let value = input.value.replace(/[^\d]/g, '');
+            if (value.length === 0) {
+                input.value = '';
+                return;
+            }
+            value = value.replace(/(\d)(\d{2})$/, '$1,$2');
+            value = value.replace(/(?=(\d{3})+(\D))\B/g, '.');
+            input.value = 'R$ ' + value;
+        };
+        
+        console.log('✅ Configurações brasileiras carregadas');
+    </script></script>
+    
+    <!-- Script para popular dados de demonstração -->
+    <script>
+        // Popular agenda com dados de demonstração se estiver vazia
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Aguardar um pouco para garantir que tudo foi inicializado
+            setTimeout(async () => {
+                try {
+                    console.log('Verificando se precisa popular agenda...');
+                    
+                    // Verificar se já existem agendamentos
+                    const agendamentos = await api.getAgendamentos(1, 100);
+                    
+                    console.log('Agendamentos existentes:', agendamentos.data.length);
+                    
+                    if (agendamentos.data.length === 0) {
+                        console.log('Agenda vazia, populando com dados de demonstração...');
+                        
+                        // Lista vazia - sistema limpo para dados reais
+                        const agendamentosDemo = [];
+
+                        // Criar agendamentos
+                        for (const agendamento of agendamentosDemo) {
+                            await api.createAgendamento(agendamento);
+                        }
+                        
+                        console.log(`✅ ${agendamentosDemo.length} agendamentos de demonstração criados!`);
+                        
+                        // Verificar e criar interações de demonstração
+                        const interacoes = await api.getInteracoes(1, 100);
+                        
+                        console.log('Interações existentes:', interacoes.data.length);
+                        
+                        if (interacoes.data.length === 0) {
+                            console.log('Criando interações de demonstração...');
+                            
+                            // Lista vazia - sistema limpo para dados reais
+                            const interacoesDemo = [];
+
+                            // Criar interações
+                            for (const interacao of interacoesDemo) {
+                                await api.createInteracao(interacao);
+                            }
+                            
+                            console.log(`✅ ${interacoesDemo.length} interações de demonstração criadas!`);
+                        }
+                        
+                        // Se a agenda estiver visível, recarregar os dados
+                        if (window.agendaManager && document.getElementById('calendar')) {
+                            await window.agendaManager.loadAgendamentosData();
+                        }
+                    } else {
+                        console.log(`Agenda já possui ${agendamentos.data.length} agendamento(s).`);
+                    }
+                    
+                } catch (error) {
+                    console.error('Erro ao popular agenda:', error);
+                }
+            }, 2000); // Aguardar 2 segundos após carregamento
+        });
+
+
+    </script>
+</body>
+</html>

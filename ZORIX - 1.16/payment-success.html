@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento Confirmado - ZORIX CRM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gradient-to-br from-green-50 to-green-100 min-h-screen">
+    <div class="container mx-auto px-4 py-16">
+        <div class="max-w-md mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-green-500 to-green-600 text-white p-8 text-center">
+                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check text-2xl text-white"></i>
+                </div>
+                <h1 class="text-2xl font-bold">🎉 Pagamento Confirmado!</h1>
+                <p class="text-green-100 mt-2">Seu acesso foi liberado com sucesso</p>
+            </div>
+
+            <!-- Conteúdo -->
+            <div class="p-8 text-center space-y-6">
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                    <h3 class="text-green-800 font-semibold mb-2">✅ Próximos Passos:</h3>
+                    <ul class="text-green-700 text-sm space-y-1 text-left">
+                        <li>• Seu acesso já foi liberado automaticamente</li>
+                        <li>• Você pode fazer login no sistema agora</li>
+                        <li>• Receberá um email de confirmação em breve</li>
+                        <li>• Seu período de acesso começou hoje</li>
+                    </ul>
+                </div>
+
+                <!-- Informações do Plano -->
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <h3 class="font-semibold text-gray-900 mb-2">📋 Seu Plano</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Plano:</span>
+                            <span class="font-medium">Acesso Mensal</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Período:</span>
+                            <span class="font-medium">30 dias</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Status:</span>
+                            <span class="font-medium text-green-600">✅ Ativo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="space-y-3">
+                    <a href="index.html" 
+                       class="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg transition duration-200 font-medium inline-block">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Acessar o Sistema
+                    </a>
+                    
+                    <a href="mailto:tittaneoenergias@gmail.com" 
+                       class="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-6 rounded-lg transition duration-200 text-sm inline-block">
+                        <i class="fas fa-envelope mr-2"></i>Suporte: tittaneoenergias@gmail.com
+                    </a>
+                </div>
+
+                <!-- Informações de Suporte -->
+                <div class="text-center text-gray-500 text-xs">
+                    <p>Transação processada com segurança</p>
+                    <p class="mt-1">ID: PAY_<?php echo time(); ?>_SUCCESS</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Log do sucesso do pagamento
+        try {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('user_id');
+            const amount = urlParams.get('amount');
+            
+            if (userId) {
+                console.log(`✅ Payment success logged for user: ${userId}, amount: ${amount}`);
+                
+                // Pode enviar informações para analytics ou log
+                localStorage.setItem('payment_success', JSON.stringify({
+                    userId: userId,
+                    amount: amount,
+                    timestamp: new Date().toISOString(),
+                    page: 'success'
+                }));
+            }
+        } catch (error) {
+            console.error('Error logging payment success:', error);
+        }
+
+        // Redirecionar automaticamente após 10 segundos
+        setTimeout(() => {
+            if (confirm('Deseja ser redirecionado para o sistema agora?')) {
+                window.location.href = 'index.html';
+            }
+        }, 10000);
+    </script>
+</body>
+</html>
