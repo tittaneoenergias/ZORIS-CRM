@@ -1,0 +1,620 @@
+/* ZORIX CRM - Custom Theme CORES ORIGINAIS */
+:root {
+    /* Cores ZORIX Originais */
+    --amarelo-neon: #E6FF28;       /* Destaques e números importantes */
+    --azul-petroleo: #064B59;      /* Títulos e menus */
+    --branco-sujo: #F9F7F2;        /* Fundo principal */
+    --cinza-medio: #898A90;        /* Textos auxiliares */
+    
+    /* Mantidas para compatibilidade */
+    --branco-limpo: #ffffff;
+    --cinza-claro: #F9F7F2;        /* Usando branco sujo */
+    --cinza-escuro: #374151;
+    
+    /* Variações derivadas das cores originais */
+    --azul-hover: #0A5B69;
+    --azul-light: #1D6B79; 
+    --azul-petroleo-light: #0F7A8B;
+    --azul-dark: #043A49;
+    --verde-sucesso: #00C851;
+    --vermelho-erro: #FF4444;
+}
+
+/* Sobrescrever cores do Tailwind com nossa paleta */
+
+/* Background principal */
+body {
+    background-color: var(--branco-sujo) !important;
+    color: var(--cinza-escuro) !important;
+}
+
+/* Sidebar */
+.sidebar-zorix {
+    background: linear-gradient(135deg, var(--azul-petroleo) 0%, var(--azul-dark) 100%) !important;
+    color: var(--branco-sujo) !important;
+}
+
+.sidebar-zorix .nav-item {
+    color: rgba(255, 255, 255, 0.8) !important;
+    transition: all 0.3s ease;
+}
+
+.sidebar-zorix .nav-item:hover {
+    background-color: rgba(96, 165, 250, 0.15) !important;
+    color: var(--amarelo-neon) !important;
+}
+
+.sidebar-zorix .nav-item.active {
+    background-color: var(--branco-sujo) !important;
+    color: var(--azul-petroleo) !important;
+    font-weight: 600;
+}
+
+/* Botões primários */
+.btn-primary {
+    background-color: var(--azul-petroleo) !important;
+    color: var(--branco-sujo) !important;
+    border: 2px solid var(--azul-petroleo) !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--azul-hover) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(8, 103, 136, 0.3);
+}
+
+/* Botões secundários */
+.btn-secondary {
+    background-color: var(--cinza-medio) !important;
+    color: var(--branco-sujo) !important;
+    border: 2px solid var(--cinza-medio) !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--cinza-escuro) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(107, 114, 128, 0.3);
+}
+
+/* Cards */
+.card-zorix {
+    background-color: var(--branco-sujo) !important;
+    border: 1px solid rgba(107, 114, 128, 0.2) !important;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card-zorix:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(37, 99, 235, 0.15);
+    border-color: var(--azul-petroleo);
+}
+
+/* Headers */
+.header-zorix {
+    background: linear-gradient(90deg, var(--branco-sujo) 0%, rgba(255, 255, 255, 0.95) 100%);
+    border-bottom: 2px solid var(--azul-petroleo);
+    backdrop-filter: blur(10px);
+}
+
+/* Inputs e Forms */
+.input-zorix {
+    background-color: var(--branco-sujo) !important;
+    border: 2px solid var(--cinza-medio) !important;
+    color: var(--azul-petroleo) !important;
+    transition: all 0.3s ease;
+}
+
+.input-zorix:focus {
+    border-color: var(--amarelo-neon) !important;
+    box-shadow: 0 0 0 3px rgba(240, 200, 8, 0.2) !important;
+    background-color: white !important;
+}
+
+/* Badges e Status */
+.badge-success {
+    background-color: var(--amarelo-neon) !important;
+    color: var(--azul-petroleo) !important;
+}
+
+.badge-info {
+    background-color: var(--azul-petroleo) !important;
+    color: var(--branco-sujo) !important;
+}
+
+.badge-warning {
+    background-color: var(--cinza-medio) !important;
+    color: var(--branco-sujo) !important;
+}
+
+/* Tabelas */
+.table-zorix {
+    background-color: var(--branco-sujo) !important;
+}
+
+.table-zorix thead {
+    background-color: var(--azul-petroleo) !important;
+    color: var(--branco-sujo) !important;
+}
+
+.table-zorix tbody tr:hover {
+    background-color: rgba(240, 200, 8, 0.1) !important;
+}
+
+/* Modais */
+.modal-lurix {
+    background-color: var(--branco-sujo) !important;
+    border: 3px solid var(--amarelo-neon) !important;
+}
+
+.modal-header-zorix {
+    background: linear-gradient(135deg, var(--azul-petroleo) 0%, var(--verde-azulado) 100%);
+    color: var(--branco-sujo) !important;
+    border-bottom: 2px solid var(--amarelo-neon);
+}
+
+/* Loading indicators */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--cinza-medio);
+    border-radius: 50%;
+    border-top-color: var(--amarelo-neon);
+    animation: spin 1s ease-in-out infinite;
+}
+
+.loading-spinner-large {
+    width: 40px;
+    height: 40px;
+    border-width: 4px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Button loading state */
+.btn-loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.btn-loading .loading-text {
+    opacity: 0;
+}
+
+.btn-loading::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Notification improvements */
+.notification-enhanced {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    max-width: 400px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateX(100%);
+    animation: slideIn 0.3s ease-out forwards;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notification-enhanced.success {
+    background-color: #10b981;
+    color: white;
+}
+
+.notification-enhanced.error {
+    background-color: #ef4444;
+    color: white;
+}
+
+.notification-enhanced.info {
+    background-color: var(--azul-petroleo);
+    color: var(--branco-sujo);
+}
+
+.notification-enhanced.warning {
+    background-color: #f59e0b;
+    color: white;
+}
+
+@keyframes slideIn {
+    to { transform: translateX(0); }
+}
+
+/* Progress bar for long operations */
+.progress-bar-container {
+    width: 100%;
+    height: 4px;
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--amarelo-neon);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+/* Notificações */
+.notification-success {
+    background: linear-gradient(135deg, var(--amarelo-neon) 0%, var(--amarelo-neon-light) 100%) !important;
+    color: var(--azul-petroleo) !important;
+    border-left: 4px solid var(--azul-petroleo) !important;
+}
+
+.notification-error {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%) !important;
+    color: white !important;
+    border-left: 4px solid #ff5252 !important;
+}
+
+.notification-info {
+    background: linear-gradient(135deg, var(--azul-petroleo) 0%, var(--azul-petroleo-light) 100%) !important;
+    color: var(--branco-sujo) !important;
+    border-left: 4px solid var(--amarelo-neon) !important;
+}
+
+/* Login/Cadastro */
+.login-background {
+    background: linear-gradient(135deg, var(--azul-petroleo) 0%, var(--azul-petroleo-light) 50%, var(--amarelo-neon) 100%);
+}
+
+.login-card {
+    background-color: var(--branco-sujo) !important;
+    border: 3px solid var(--amarelo-neon) !important;
+    box-shadow: 0 20px 60px rgba(6, 75, 89, 0.3);
+}
+
+.logo-zorix {
+    color: var(--amarelo-neon) !important;
+    text-shadow: 0 2px 4px rgba(6, 75, 89, 0.3);
+    transition: all 0.3s ease;
+}
+
+.logo-zorix:hover {
+    color: var(--azul-petroleo) !important;
+    transform: scale(1.1);
+}
+
+/* KPI Cards */
+.kpi-card {
+    background: linear-gradient(135deg, var(--branco-sujo) 0%, white 100%);
+    border: 2px solid transparent;
+    border-image: linear-gradient(45deg, var(--amarelo-neon), var(--azul-petroleo)) 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--amarelo-neon) 0%, var(--azul-petroleo) 100%);
+}
+
+/* Animações */
+@keyframes pulse-lurix {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(230, 255, 40, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(230, 255, 40, 0);
+    }
+}
+
+.pulse-lurix {
+    animation: pulse-lurix 2s infinite;
+}
+
+/* Loading spinner customizado */
+.spinner-lurix {
+    border: 3px solid var(--cinza-medio);
+    border-top: 3px solid var(--amarelo-neon);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Scrollbar customizada */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--branco-sujo);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--amarelo-neon) 0%, var(--azul-petroleo) 100%);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--amarelo-neon-hover) 0%, var(--azul-petroleo-light) 100%);
+}
+
+/* Efeitos especiais */
+.glow-effect {
+    box-shadow: 0 0 20px rgba(230, 255, 40, 0.5);
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, var(--azul-petroleo) 0%, var(--amarelo-neon) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: bold;
+}
+
+/* Tabs System */
+.tab-btn {
+    background-color: var(--branco-sujo);
+    color: var(--cinza-medio);
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(230, 255, 40, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.tab-btn:hover::before {
+    left: 100%;
+}
+
+.tab-btn.active {
+    background-color: var(--amarelo-neon);
+    color: var(--azul-petroleo);
+    border-bottom-color: var(--azul-petroleo);
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(230, 255, 40, 0.3);
+}
+
+.tab-btn:hover:not(.active) {
+    background-color: rgba(230, 255, 40, 0.3);
+    color: var(--azul-petroleo);
+    transform: translateY(-2px);
+}
+
+.tab-content {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Status badges específicos para projetos */
+.badge-em_estudo {
+    background-color: var(--cinza-medio) !important;
+    color: white !important;
+}
+
+.badge-proposta_enviada {
+    background-color: #3B82F6 !important;
+    color: white !important;
+}
+
+.badge-aprovado {
+    background-color: var(--amarelo-neon) !important;
+    color: var(--azul-petroleo) !important;
+}
+
+.badge-em_instalacao {
+    background-color: #F59E0B !important;
+    color: white !important;
+}
+
+.badge-concluido {
+    background-color: #10B981 !important;
+    color: white !important;
+}
+
+.badge-manutencao {
+    background-color: #EF4444 !important;
+    color: white !important;
+}
+
+/* Cores utilitárias para texto */
+.text-amarelo-neon {
+    color: var(--amarelo-neon) !important;
+}
+
+.text-azul-petroleo {
+    color: var(--azul-petroleo) !important;
+}
+
+.text-cinza-medio {
+    color: var(--cinza-medio) !important;
+}
+
+.bg-amarelo-neon {
+    background-color: var(--amarelo-neon) !important;
+}
+
+.bg-azul-petroleo {
+    background-color: var(--azul-petroleo) !important;
+}
+
+.border-amarelo-neon {
+    border-color: var(--amarelo-neon) !important;
+}
+
+.border-azul-petroleo {
+    border-color: var(--azul-petroleo) !important;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .sidebar-zorix {
+        background: linear-gradient(180deg, var(--azul-petroleo) 0%, var(--azul-petroleo-light) 100%) !important;
+    }
+    
+    .tab-btn {
+        font-size: 0.875rem;
+        padding: 0.75rem 1rem;
+    }
+    
+    .tab-content {
+        padding: 1rem;
+    }
+}
+
+/* Calendar Date Indicators */
+.custom-day-cell {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 4px;
+}
+
+.day-number {
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: #374151;
+    margin-bottom: 2px;
+}
+
+.day-indicators {
+    display: flex;
+    gap: 2px;
+    margin-top: 2px;
+}
+
+.event-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    opacity: 0.9;
+}
+
+.agendamento-indicator {
+    background-color: #3B82F6; /* Azul para agendamentos */
+    box-shadow: 0 0 4px rgba(59, 130, 246, 0.5);
+}
+
+.interacao-indicator {
+    background-color: #10B981; /* Verde para interações */
+    box-shadow: 0 0 4px rgba(16, 185, 129, 0.5);
+}
+
+.event-count {
+    font-size: 0.625rem;
+    color: #6B7280;
+    font-weight: 600;
+    margin-top: 1px;
+    background-color: #F3F4F6;
+    padding: 1px 3px;
+    border-radius: 6px;
+    min-width: 16px;
+    text-align: center;
+}
+
+/* Hover effects for date cells */
+.fc-daygrid-day:hover .custom-day-cell .day-number {
+    color: var(--azul-petroleo);
+    font-weight: 600;
+}
+
+.fc-daygrid-day:hover .event-indicator {
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+/* Today's date styling */
+.fc-day-today .custom-day-cell .day-number {
+    background-color: var(--amarelo-neon);
+    color: var(--azul-petroleo);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+/* Date cells with many events */
+.custom-day-cell.has-many-events {
+    background-color: rgba(59, 130, 246, 0.05);
+    border-radius: 4px;
+}
+
+/* Weekend dates styling */
+.fc-day-sat .custom-day-cell .day-number,
+.fc-day-sun .custom-day-cell .day-number {
+    color: #6B7280;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .event-indicator {
+        width: 4px;
+        height: 4px;
+    }
+    
+    .day-number {
+        font-size: 0.75rem;
+    }
+    
+    .event-count {
+        font-size: 0.5rem;
+        padding: 0px 2px;
+        min-width: 12px;
+    }
+}
