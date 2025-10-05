@@ -1,0 +1,248 @@
+{
+  "metadata": {
+    "description": "Irradiação Solar (HSP - Horas de Sol Pleno) por cidade brasileira",
+    "unit": "kWh/m²/dia",
+    "source": "CRESESB/INMET - Dados médios históricos",
+    "last_updated": "2025-10-02"
+  },
+  "cidades": {
+    "AC": {
+      "Rio Branco": {
+        "jan": 4.2, "fev": 4.1, "mar": 4.0, "abr": 3.9, "mai": 3.8, "jun": 3.7,
+        "jul": 3.8, "ago": 4.2, "set": 4.5, "out": 4.7, "nov": 4.6, "dez": 4.4
+      }
+    },
+    "AL": {
+      "Maceió": {
+        "jan": 5.8, "fev": 5.9, "mar": 5.7, "abr": 5.2, "mai": 4.6, "jun": 4.2,
+        "jul": 4.3, "ago": 4.8, "set": 5.2, "out": 5.8, "nov": 6.0, "dez": 5.9
+      }
+    },
+    "AP": {
+      "Macapá": {
+        "jan": 4.5, "fev": 4.3, "mar": 4.1, "abr": 3.8, "mai": 3.7, "jun": 3.9,
+        "jul": 4.1, "ago": 4.6, "set": 5.0, "out": 5.2, "nov": 5.0, "dez": 4.7
+      }
+    },
+    "AM": {
+      "Manaus": {
+        "jan": 4.3, "fev": 4.1, "mar": 3.9, "abr": 3.6, "mai": 3.5, "jun": 3.4,
+        "jul": 3.6, "ago": 4.0, "set": 4.4, "out": 4.6, "nov": 4.5, "dez": 4.4
+      }
+    },
+    "BA": {
+      "Salvador": {
+        "jan": 6.2, "fev": 6.1, "mar": 5.8, "abr": 5.1, "mai": 4.3, "jun": 3.9,
+        "jul": 4.0, "ago": 4.6, "set": 5.2, "out": 5.9, "nov": 6.2, "dez": 6.3
+      },
+      "Feira de Santana": {
+        "jan": 6.0, "fev": 5.9, "mar": 5.6, "abr": 4.9, "mai": 4.1, "jun": 3.7,
+        "jul": 3.8, "ago": 4.4, "set": 5.0, "out": 5.7, "nov": 6.0, "dez": 6.1
+      },
+      "Vitória da Conquista": {
+        "jan": 5.9, "fev": 5.8, "mar": 5.5, "abr": 4.8, "mai": 4.0, "jun": 3.6,
+        "jul": 3.7, "ago": 4.3, "set": 4.9, "out": 5.6, "nov": 5.9, "dez": 6.0
+      }
+    },
+    "CE": {
+      "Fortaleza": {
+        "jan": 6.8, "fev": 6.5, "mar": 6.0, "abr": 5.2, "mai": 4.8, "jun": 4.9,
+        "jul": 5.3, "ago": 6.0, "set": 6.5, "out": 6.9, "nov": 7.0, "dez": 6.9
+      },
+      "Juazeiro do Norte": {
+        "jan": 6.5, "fev": 6.2, "mar": 5.7, "abr": 4.9, "mai": 4.5, "jun": 4.6,
+        "jul": 5.0, "ago": 5.7, "set": 6.2, "out": 6.6, "nov": 6.7, "dez": 6.6
+      }
+    },
+    "DF": {
+      "Brasília": {
+        "jan": 5.2, "fev": 5.4, "mar": 5.1, "abr": 4.8, "mai": 4.2, "jun": 3.8,
+        "jul": 4.1, "ago": 5.0, "set": 5.3, "out": 5.1, "nov": 4.9, "dez": 5.0
+      }
+    },
+    "ES": {
+      "Vitória": {
+        "jan": 5.8, "fev": 6.0, "mar": 5.5, "abr": 4.7, "mai": 3.8, "jun": 3.4,
+        "jul": 3.6, "ago": 4.2, "set": 4.8, "out": 5.5, "nov": 5.8, "dez": 5.9
+      }
+    },
+    "GO": {
+      "Goiânia": {
+        "jan": 5.1, "fev": 5.3, "mar": 5.0, "abr": 4.7, "mai": 4.1, "jun": 3.7,
+        "jul": 4.0, "ago": 4.9, "set": 5.2, "out": 5.0, "nov": 4.8, "dez": 4.9
+      },
+      "Anápolis": {
+        "jan": 5.0, "fev": 5.2, "mar": 4.9, "abr": 4.6, "mai": 4.0, "jun": 3.6,
+        "jul": 3.9, "ago": 4.8, "set": 5.1, "out": 4.9, "nov": 4.7, "dez": 4.8
+      }
+    },
+    "MA": {
+      "São Luís": {
+        "jan": 5.2, "fev": 5.0, "mar": 4.7, "abr": 4.3, "mai": 4.5, "jun": 4.8,
+        "jul": 5.1, "ago": 5.6, "set": 5.8, "out": 5.7, "nov": 5.5, "dez": 5.3
+      }
+    },
+    "MT": {
+      "Cuiabá": {
+        "jan": 4.8, "fev": 5.0, "mar": 4.7, "abr": 4.5, "mai": 4.0, "jun": 3.6,
+        "jul": 3.9, "ago": 4.7, "set": 5.0, "out": 4.8, "nov": 4.6, "dez": 4.7
+      }
+    },
+    "MS": {
+      "Campo Grande": {
+        "jan": 5.3, "fev": 5.5, "mar": 5.2, "abr": 4.9, "mai": 4.3, "jun": 3.9,
+        "jul": 4.2, "ago": 5.1, "set": 5.4, "out": 5.2, "nov": 5.0, "dez": 5.1
+      }
+    },
+    "MG": {
+      "Belo Horizonte": {
+        "jan": 5.1, "fev": 5.3, "mar": 4.9, "abr": 4.4, "mai": 3.7, "jun": 3.3,
+        "jul": 3.5, "ago": 4.2, "set": 4.7, "out": 5.0, "nov": 5.1, "dez": 5.0
+      },
+      "Uberlândia": {
+        "jan": 5.0, "fev": 5.2, "mar": 4.8, "abr": 4.3, "mai": 3.6, "jun": 3.2,
+        "jul": 3.4, "ago": 4.1, "set": 4.6, "out": 4.9, "nov": 5.0, "dez": 4.9
+      },
+      "Juiz de Fora": {
+        "jan": 4.9, "fev": 5.1, "mar": 4.7, "abr": 4.2, "mai": 3.5, "jun": 3.1,
+        "jul": 3.3, "ago": 4.0, "set": 4.5, "out": 4.8, "nov": 4.9, "dez": 4.8
+      }
+    },
+    "PA": {
+      "Belém": {
+        "jan": 4.6, "fev": 4.4, "mar": 4.2, "abr": 3.9, "mai": 4.0, "jun": 4.2,
+        "jul": 4.4, "ago": 4.8, "set": 5.1, "out": 5.0, "nov": 4.8, "dez": 4.7
+      }
+    },
+    "PB": {
+      "João Pessoa": {
+        "jan": 6.0, "fev": 5.8, "mar": 5.4, "abr": 4.8, "mai": 4.3, "jun": 4.1,
+        "jul": 4.3, "ago": 4.9, "set": 5.4, "out": 5.9, "nov": 6.1, "dez": 6.0
+      }
+    },
+    "PR": {
+      "Curitiba": {
+        "jan": 4.6, "fev": 4.8, "mar": 4.2, "abr": 3.6, "mai": 2.9, "jun": 2.5,
+        "jul": 2.7, "ago": 3.3, "set": 3.8, "out": 4.3, "nov": 4.6, "dez": 4.5
+      },
+      "Londrina": {
+        "jan": 5.0, "fev": 5.2, "mar": 4.6, "abr": 4.0, "mai": 3.3, "jun": 2.9,
+        "jul": 3.1, "ago": 3.7, "set": 4.2, "out": 4.7, "nov": 5.0, "dez": 4.9
+      },
+      "Maringá": {
+        "jan": 5.1, "fev": 5.3, "mar": 4.7, "abr": 4.1, "mai": 3.4, "jun": 3.0,
+        "jul": 3.2, "ago": 3.8, "set": 4.3, "out": 4.8, "nov": 5.1, "dez": 5.0
+      }
+    },
+    "PE": {
+      "Recife": {
+        "jan": 5.9, "fev": 5.7, "mar": 5.3, "abr": 4.7, "mai": 4.2, "jun": 4.0,
+        "jul": 4.2, "ago": 4.8, "set": 5.3, "out": 5.8, "nov": 6.0, "dez": 5.9
+      },
+      "Caruaru": {
+        "jan": 6.2, "fev": 6.0, "mar": 5.6, "abr": 5.0, "mai": 4.5, "jun": 4.3,
+        "jul": 4.5, "ago": 5.1, "set": 5.6, "out": 6.1, "nov": 6.3, "dez": 6.2
+      }
+    },
+    "PI": {
+      "Teresina": {
+        "jan": 5.8, "fev": 5.5, "mar": 5.1, "abr": 4.7, "mai": 4.8, "jun": 5.0,
+        "jul": 5.4, "ago": 6.0, "set": 6.2, "out": 6.1, "nov": 5.9, "dez": 5.8
+      }
+    },
+    "RJ": {
+      "Rio de Janeiro": {
+        "jan": 5.2, "fev": 5.4, "mar": 4.9, "abr": 4.2, "mai": 3.4, "jun": 3.0,
+        "jul": 3.2, "ago": 3.9, "set": 4.3, "out": 4.8, "nov": 5.1, "dez": 5.2
+      },
+      "Niterói": {
+        "jan": 5.1, "fev": 5.3, "mar": 4.8, "abr": 4.1, "mai": 3.3, "jun": 2.9,
+        "jul": 3.1, "ago": 3.8, "set": 4.2, "out": 4.7, "nov": 5.0, "dez": 5.1
+      },
+      "Campos dos Goytacazes": {
+        "jan": 5.3, "fev": 5.5, "mar": 5.0, "abr": 4.3, "mai": 3.5, "jun": 3.1,
+        "jul": 3.3, "ago": 4.0, "set": 4.4, "out": 4.9, "nov": 5.2, "dez": 5.3
+      }
+    },
+    "RN": {
+      "Natal": {
+        "jan": 6.5, "fev": 6.2, "mar": 5.7, "abr": 5.0, "mai": 4.6, "jun": 4.5,
+        "jul": 4.8, "ago": 5.4, "set": 5.9, "out": 6.4, "nov": 6.6, "dez": 6.5
+      }
+    },
+    "RS": {
+      "Porto Alegre": {
+        "jan": 5.0, "fev": 5.1, "mar": 4.4, "abr": 3.7, "mai": 2.9, "jun": 2.4,
+        "jul": 2.6, "ago": 3.2, "set": 3.8, "out": 4.4, "nov": 4.8, "dez": 4.9
+      },
+      "Caxias do Sul": {
+        "jan": 4.8, "fev": 4.9, "mar": 4.2, "abr": 3.5, "mai": 2.7, "jun": 2.2,
+        "jul": 2.4, "ago": 3.0, "set": 3.6, "out": 4.2, "nov": 4.6, "dez": 4.7
+      },
+      "Pelotas": {
+        "jan": 5.2, "fev": 5.3, "mar": 4.6, "abr": 3.9, "mai": 3.1, "jun": 2.6,
+        "jul": 2.8, "ago": 3.4, "set": 4.0, "out": 4.6, "nov": 5.0, "dez": 5.1
+      }
+    },
+    "RO": {
+      "Porto Velho": {
+        "jan": 4.1, "fev": 3.9, "mar": 3.7, "abr": 3.5, "mai": 3.4, "jun": 3.3,
+        "jul": 3.5, "ago": 3.9, "set": 4.2, "out": 4.4, "nov": 4.3, "dez": 4.2
+      }
+    },
+    "RR": {
+      "Boa Vista": {
+        "jan": 5.0, "fev": 4.8, "mar": 4.5, "abr": 4.2, "mai": 4.4, "jun": 4.7,
+        "jul": 5.0, "ago": 5.5, "set": 5.8, "out": 5.6, "nov": 5.4, "dez": 5.1
+      }
+    },
+    "SC": {
+      "Florianópolis": {
+        "jan": 5.1, "fev": 5.2, "mar": 4.5, "abr": 3.8, "mai": 3.0, "jun": 2.5,
+        "jul": 2.7, "ago": 3.3, "set": 3.9, "out": 4.5, "nov": 4.9, "dez": 5.0
+      },
+      "Joinville": {
+        "jan": 4.9, "fev": 5.0, "mar": 4.3, "abr": 3.6, "mai": 2.8, "jun": 2.3,
+        "jul": 2.5, "ago": 3.1, "set": 3.7, "out": 4.3, "nov": 4.7, "dez": 4.8
+      },
+      "Blumenau": {
+        "jan": 4.8, "fev": 4.9, "mar": 4.2, "abr": 3.5, "mai": 2.7, "jun": 2.2,
+        "jul": 2.4, "ago": 3.0, "set": 3.6, "out": 4.2, "nov": 4.6, "dez": 4.7
+      }
+    },
+    "SP": {
+      "São Paulo": {
+        "jan": 4.6, "fev": 4.8, "mar": 4.2, "abr": 3.6, "mai": 2.9, "jun": 2.5,
+        "jul": 2.7, "ago": 3.3, "set": 3.8, "out": 4.3, "nov": 4.6, "dez": 4.5
+      },
+      "Santos": {
+        "jan": 4.8, "fev": 5.0, "mar": 4.4, "abr": 3.8, "mai": 3.1, "jun": 2.7,
+        "jul": 2.9, "ago": 3.5, "set": 4.0, "out": 4.5, "nov": 4.8, "dez": 4.7
+      },
+      "Campinas": {
+        "jan": 4.7, "fev": 4.9, "mar": 4.3, "abr": 3.7, "mai": 3.0, "jun": 2.6,
+        "jul": 2.8, "ago": 3.4, "set": 3.9, "out": 4.4, "nov": 4.7, "dez": 4.6
+      },
+      "Ribeirão Preto": {
+        "jan": 4.9, "fev": 5.1, "mar": 4.5, "abr": 3.9, "mai": 3.2, "jun": 2.8,
+        "jul": 3.0, "ago": 3.6, "set": 4.1, "out": 4.6, "nov": 4.9, "dez": 4.8
+      },
+      "Sorocaba": {
+        "jan": 4.5, "fev": 4.7, "mar": 4.1, "abr": 3.5, "mai": 2.8, "jun": 2.4,
+        "jul": 2.6, "ago": 3.2, "set": 3.7, "out": 4.2, "nov": 4.5, "dez": 4.4
+      }
+    },
+    "SE": {
+      "Aracaju": {
+        "jan": 6.0, "fev": 5.8, "mar": 5.4, "abr": 4.8, "mai": 4.3, "jun": 4.1,
+        "jul": 4.3, "ago": 4.9, "set": 5.4, "out": 5.9, "nov": 6.1, "dez": 6.0
+      }
+    },
+    "TO": {
+      "Palmas": {
+        "jan": 4.9, "fev": 5.1, "mar": 4.8, "abr": 4.5, "mai": 4.3, "jun": 4.1,
+        "jul": 4.4, "ago": 5.0, "set": 5.3, "out": 5.1, "nov": 4.9, "dez": 4.8
+      }
+    }
+  }
+}
